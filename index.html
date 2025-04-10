@@ -1,94 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Drink Menu</title>
-    <style>
-        body {
-            background-color: #1a1a1a;
-            color: #f2f2f2;
-            font-family: 'Courier New', Courier, monospace;
-            text-align: center;
-            padding: 20px;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding Invitation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+  <style>
 
-        h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            color: #ffcc00;
-        }
-
-        h2 {
-            font-size: 2em;
-            margin: 5px 0;
-            color: #d9d9d9;
-        }
-
-        p {
-            font-size: 1.2em;
-            margin: 5px 0;
-        }
-
-        .drink-item {
-            margin: 10px 0;
-            padding: 10px;
-            border: 1px solid #333;
-            background-color: #262626;
-        }
-    </style>
-</head>
-<body>
-    <h1>Chalotte og Ronnis Bryllupsfest på INDUSTRIEN!</h1>
-    <h2>Drink Menu</h2>
-<h3 id="countdown"></h3>
-<h4>Adresse</h4>
-    <div class="drink-item">
-        <p>Whiskey Sour - $8</p>
-    </div>
-    <div class="drink-item">
-        <p>Cheap Beer (PBR) - $3</p>
-    </div>
-    <div class="drink-item">
-        <p>Rum & Coke - $6</p>
-    </div>
-    <div class="drink-item">
-        <p>Tequila Shot - $5</p>
-    </div>
-    <div class="drink-item">
-        <p>Fancy Cocktail (for the classy folks) - $10</p>
-    </div>
-    <p>Cheers to love and bad decisions!</p>
-</body>
-<script>
-var end = new Date('2025-06-28 11:1 AM');
-
-    var _second = 1000;
-    var _minute = _second * 60;
-    var _hour = _minute * 60;
-    var _day = _hour * 24;
-    var timer;
-
-    function showRemaining() {
-        var now = new Date();
-        var distance = end - now;
-        if (distance < 0) {
-
-            clearInterval(timer);
-            document.getElementById('countdown').innerText = 'NOW!!';
-
-            return;
-        }
-        var days = Math.floor(distance / _day);
-        var hours = Math.floor((distance % _day) / _hour);
-        var minutes = Math.floor((distance % _hour) / _minute);
-        var seconds = Math.floor((distance % _minute) / _second);
-        document.getElementById('countdown').innerText = days + 'days, ';
-        document.getElementById('countdown').innerText += hours + 'hrs, ';
-        document.getElementById('countdown').innerText += minutes + 'mins, ';
-        document.getElementById('countdown').innerText += seconds + 'secs';
+.hearts-container{
+   top:0;
+}
+.heart {
+      position: fixed;
+      color: black;
+      font-size: 1rem;
+      animation: fall linear infinite;
+      pointer-events: none;
+      user-select: none;
     }
 
-    timer = setInterval(showRemaining, 1000);
-</script>
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+    }
+  body {
+      margin: 0;
+      padding: 0;
+      background-color: white;
+      color: black;
+      font-family: 'Playfair Display', serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .invitation {
+      text-align: center;
+      border: 2px solid black;
+      padding: 3rem;
+      max-width: 600px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      background-color: white;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .names {
+      font-size: 2rem;
+      margin: 1rem 0;
+    }
+
+    .details {
+      font-size: 1.2rem;
+      margin: 1.5rem 0;
+    }
+
+    .rsvp {
+      font-size: 1rem;
+      margin-top: 2rem;
+    }
+
+    .line {
+      width: 80px;
+      height: 2px;
+      background: black;
+      margin: 1.5rem auto;
+    }
+
+    .button {
+      background-color: black;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      margin-top: 2rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #333;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: white;
+      margin: 10% auto;
+      padding: 2rem;
+      border: 2px solid black;
+      width: 80%;
+      max-width: 500px;
+      font-size: 1rem;
+      text-align: left;
+      position: relative;
+    }
+
+    .close {
+      color: black;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .modal h2 {
+      margin-top: 0;
+    }
+
+    .modal ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .modal ul li {
+      margin: 0.5rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="hearts-container"></div>
+
+  <div class="invitation">
+    <h1>Bryllupsfest</h1>
+    <div class="line"></div>
+    <p class="names">Ronni & Chalotte</p>
+    <p class="details">28 Juni, 2025<br>at 19:30 - 02:00<br>Industrien, Vestergade 4, 9400 Nørresundby</p>
+    <p class="rsvp">SU Senest 15 Maj</p>
+    <button class="button" onclick="document.getElementById('drinksModal').style.display='block'">Barmenu</button>
+    <p>Vi forventer at ankomme omkring kl 20.</p>
+    <p style="font-style:italic">(Chalottetid, omkring 08:15).</p>
+  </div>
+  <div id="drinksModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="document.getElementById('drinksModal').style.display='none'">&times;</span>
+      <h2>Barmenu</h2>
+      <ul>
+        <li><strong>Grønlænderrundstykker</strong> – i forskellige afskygninger</li>
+        <li><strong>Sjusser</strong> – Spiritus samt blandingsprodukt</li>
+        <li><strong>Sjåts</strong> – "Almindelige shots"</li>
+        <li><strong>Technobajere</strong> – Ses i Randers</li>
+        <li><strong>Irish Coffee</strong> – Med den billigste Whisky de har</li>
+      </ul>
+    </div>
+  </div>
+
+<script>
+    // Close modal if clicking outside of it
+    window.onclick = function(event) {
+      const modal = document.getElementById('drinksModal');
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+    const heartsContainer = document.getElementById("hearts-container");
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = "♥";
+      heart.style.left = Math.random() * 100 + "vw";
+ heart.style.top = Math.random() * 2 + "vw";
+      heart.style.fontSize = (Math.random() * 0.8 + 0.6) + "rem";
+      heart.style.animationDuration = (Math.random() * 3 + 2+6) + "s";
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 5000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+
+</body>
 </html>
